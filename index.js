@@ -20,6 +20,10 @@ app.use(express.json())
 //     database: process.env.MYSQL_DATABASE
 // })
 
+//Test End point
+app.get('/hello',(req, res)=>{
+    res.send("Hello")
+})
 
 app.get('/get',(req, res)=>{
     console.log("GET request")
