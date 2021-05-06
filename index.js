@@ -39,17 +39,37 @@ app.post('/create',(req,res)=>{
 
     const name = req.body.name;
     const age = req.body.age;
+	const address = req.body.address;
+	const experience = req.body.experience;
 
-    db.db.query('INSERT INTO employees (name, age) VALUES (?,?)',[name, age],(err, result)=>{
+    db.query('INSERT INTO employees (name, age, address, experience) VALUES (?,?,?,?)',[name, age, address, experience],(err, result)=>{
         if(err){
             console.log("Error : ", err);
             res.send(err)
         }else{
-            console.log("Successfully Inserted!");
-            res.send("Successfully Inserted!")
+            console.log("Successfully Inserted!",result.insertId);
+            res.status(200).json({message: result.insertId});
         }
     })
 })
+
+
+app.delete('/delete/:id',(req,res)=>{
+    console.log("POST Request");
+
+    const id = req.params.id;
+
+    db.query('DELETE FROM employees WHERE id = ?',[id],(err, result)=>{
+        if(err){
+            console.log("Error : ", err);
+            res.send(err)
+        }else{
+            console.log("Successfully Deleted!");
+            res.send("Successfully Deleted!")
+        }
+    })
+})
+
 
 app.listen(process.env.PORT || 3001,()=>{
     console.log(`SERVER STARTED ON PORT ${process.env.PORT}`)
