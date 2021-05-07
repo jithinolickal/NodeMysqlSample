@@ -6,13 +6,11 @@ const mysql = require('mysql')
 //     require('dotenv').config();
 // }
 
-console.log("database.js", process.env.MYSQL_DATABASE);
-
 const dbConnectionInfo  = {
-    host: 'sql5.freesqldatabase.com',
-    user: 'sql5410744',
-    password: 'k37URIr4sM',
-    database: 'sql5410744',
+    host: '',
+    user: '',
+    password: '',
+    database: '',
     port: 3306
 }
 
